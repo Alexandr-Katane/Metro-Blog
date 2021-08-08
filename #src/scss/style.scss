@@ -1,0 +1,530 @@
+
+
+@mixin font($font_name, $file_name, $weight, $style) {
+
+    @font-face {
+    font-family: $font_name;
+    font-display: swap;
+    src: url("../fonts/#{$file_name}.woff") format("woff"), url("../fonts/#{$file_name}.woff2") format("woff2");
+    font-weight: #{$weight};
+    font-style: #{$style};
+    }
+}
+
+//<Подключение шрифтов через Google fonts>===============================================================
+
+@import "fonts";
+
+//<Шрифт по умолчанию>========================================================================================
+$fontFamily: "segoe-wp-light";
+//</Шрифт по умолчанию>========================================================================================
+
+//<Переменные>========================================================================================
+$minWidth: 320px;
+$maxWidth: 1500;
+$maxWidthContainer: 1050;
+$md1: $maxWidthContainer + 12;
+$md2: 991.98;
+$md3:767.98;
+$md4:479.98;
+//</Переменные>========================================================================================
+
+//<ОБНУЛЕНИЕ, ОБЩИЕ ПАРАМЕТРЫ>========================================================================================
+@import "nullstyle";
+
+//</ОБНУЛЕНИЕ, ОБЩИЕ ПАРАМЕТРЫ>========================================================================================
+
+//<ОБОЛОЧКА>========================================================================================
+.wrapper{
+    width: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    font-family: $fontFamily;
+
+    &._load{
+    }
+}
+//</ОБОЛОЧКА>========================================================================================
+
+//<ОСНОВНАЯ СЕТКА>========================================================================================
+._container{
+    max-width: $maxWidthContainer + px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+//</ОСНОВНАЯ СЕТКА>========================================================================================
+
+@import "header";
+@import "ui";
+@import "forms";
+@import "swiper";
+@import "footer";
+
+.main {
+    padding-top: 120px;
+    @media (max-width:$maxWidthContainer+px) {
+        padding-top: calc(60px + (120 - 60) * ((100vw - 320px) / (1270 - 320)));
+    }
+}
+
+//<Reviews>========================================================================================
+.reviews { 
+    padding: 116px 0 180px 0;
+    @media (max-width:$maxWidthContainer+px) {
+        padding-top: calc(0px + (116 - 0) * ((100vw - 320px) / (1270 - 320)));
+        padding-bottom: calc(10px + (39 - 10) * ((100vw - 320px) / (1270 - 320)));
+    }
+	&__content {
+        
+        @media (min-width:$md2+px) {
+            display: flex;
+            position: relative;
+        }   
+        @media (max-width:$md2+px) {
+            text-align: center;
+        }
+	}
+
+	&__info {
+	}
+    &__img {
+        text-align: center;
+        @media (min-width:$md2+px) {
+            position: absolute;
+            top: 0;
+            left: 35%;
+                
+        }
+        img {
+            @media (max-width:1300px) {
+                width: 90%;
+            }
+        }
+        @media (max-width:$md2+px) {
+            width: 100%;
+        }
+    }
+}
+
+.info-reviews {
+    padding: 63px 0 0 15px ;
+    @media (max-width:$maxWidthContainer+px) {
+        padding-bottom: calc(30px + (60 - 30) * ((100vw - 320px) / (1270 - 320)));
+    }
+	&__title {
+        font-size: 61.2px;
+        line-height: 58px;
+        color: #5d5d5d; 
+        padding-bottom: 15px;
+	}
+
+	&__subtitle {
+        font-size: 47.2px;
+        margin: 0 0 24px 0;
+	}
+}
+//</Reviews>========================================================================================
+
+//<Content>========================================================================================
+.content {
+    margin: 0 0 22px 0;
+    &__body {
+        display: flex;
+        width: 100%;
+        @media (max-width:$md2+px) {
+            flex-direction: column;
+        }
+    
+    }
+
+    &__information {
+        flex: 1 1 auto;
+        max-width: 700px;
+        @media (max-width:$md2+px) {
+            margin: 0 auto;
+        }
+    }
+    &__slider {
+        margin: 0 0 36px 0;
+    }
+    &__articles {
+    }
+}
+.side {
+    flex: 0 1 321px;
+    @media (max-width:$md2+px) {
+        flex: 1 1 100%;
+    }
+}
+
+//</Content>========================================================================================
+
+//<Slider>========================================================================================
+.slider-content {
+    display: flex;
+    width: 100%;
+    @media (max-width:650px) {
+        flex-direction: column;
+    }
+    &__column {
+        flex: 0 1 100%;
+        &_c{
+            display: flex;
+            flex-direction: column;
+            @media (max-width:650px) {
+                align-self: center;
+                padding: 20px 0;
+            }
+        }
+    }
+
+    &__images {
+        display: flex;
+        align-items: center;
+        padding: 70px 0 44px;
+        justify-content: center;
+        background-color: #dadada;
+        img {
+            padding: 0 8px;
+        }
+    }
+
+    &__body {
+        margin-left: 20px;
+        max-width: 370px;
+        flex: 0 1 100%;
+        @media (max-width:$md4+px) {
+            max-width: 300px;
+            margin: 0;
+        }
+    }
+
+    &__slide {
+        padding: 0 0 0 5px;
+    }
+
+    &__title {
+        font-size: 30px;
+        line-height: 37px;
+        font-weight: 300;
+        color: #696161;
+        margin-top: -10px;
+        margin-bottom: 10px;
+    }
+
+    &__text {
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: 300;
+        color: #848484;
+    }
+    &__controls {
+    }
+}
+
+.controls-slider-content {
+    display: flex;
+    justify-content: flex-end;
+    &__arrows {
+    }
+}
+.slider-arrows {
+    margin: 0 21px 0 0;
+}
+.slider-arrow {
+    cursor: pointer;
+    position: relative;
+        width: 31px;
+        height: 39px;
+        background-color: rgba(50, 51, 50, 0.5);
+        @media (any-hover:hover) {
+            &:hover {
+                transition: all 0.5s ease 0s;
+                background-color: rgba(50, 51, 50, 0.7);
+            }
+        }
+    &_prev {
+        
+        &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform:translate(-50%, -50%) rotate(180deg) ;
+            width: 10px;
+            height: 26px;
+            background: url("../img/icons/arrow.png") center no-repeat;
+        }
+    }
+
+    &_next {
+        margin-left: -4px;
+        &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 26px;
+            background: url("../img/icons/arrow.png") center no-repeat;
+        }
+    }
+}
+//</Slider>========================================================================================
+
+
+//<Side>========================================================================================
+.side {
+
+    &__column {
+    }
+
+    &__guide {
+        margin: 0 0 50px 0;
+    }
+    &__join {
+    }
+}
+.guide {
+    border: 1px solid #e1dddd;
+    text-align: center;
+    padding: 14px 0 0 0;
+    font-family: 'SegoeWPN';
+    height: 251px;
+    position: relative;
+
+    &__subtitle {
+        font-size: 21px;
+        line-height: 27px;
+        font-weight: 400;
+        color: #9ba08d;
+    }
+
+    &__title {
+        font-size: 39px;
+        line-height: 39px;
+        font-weight: 700;
+        color: #b8dc58;
+    }
+    
+    &__images {
+        position: relative;
+        &_top {
+            position: absolute;
+            top: 10px;
+            left: 40px;
+        }
+        &_bottom {
+            position: absolute;
+            top: 70px;
+            left: 115px;
+        }
+    }
+    &__img{
+        position: absolute; 
+        bottom: 14px;
+        right: 44px;
+    }
+
+}
+
+
+.week {
+    background-color: #86e7f0;
+    padding: 0 0 12px 0;
+    margin: 0 0 25px 0;
+    &__body {
+        text-align: center;
+
+    }
+
+    &__number {
+        font-family: 'SegoeWPN';
+        font-size: 71.6px;
+        line-height: 21px;
+        font-weight: 900;
+        color: #ffffff;
+        position: relative;
+        z-index: 2;
+        padding: 20px 0 30px 0 ;
+        
+        span {
+            padding: 28px 0 0 0;
+            display: block;
+            font-size: 21.8px;
+            line-height: 23px;
+            font-weight: 400;
+        }
+        &::before {
+            content: '';
+            position: absolute;
+            background-color: #ef809f;
+            border: 5px solid #ffffff;
+            width: 133px;
+            height: 133px;
+            border-radius: 50%;
+            top: -20px;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            z-index: -1;
+        }
+    }
+
+    &__title {
+        font-family: 'SegoeWPN';
+        font-size: 45px;
+        line-height: 21px;
+        font-weight: 900;
+        color: #ffffff;
+        margin: 0 0 20px 0;
+    }
+
+    &__text {
+        font-family: 'SegoeWPN';
+        font-size: 25px;
+        line-height: 28px;
+        font-weight: 500;
+        color: #ffffff;
+        margin: 0 0 10px 0;
+    }
+
+    &__btn {
+        font-family: 'SegoeWPN';
+        background-color: #58d1dc;
+        color:#ffffff;
+        display: inline-block;
+        padding: 5px 20px;
+        border-radius: 5px;
+        font-size: 20.2px;
+        line-height: 24px;
+        font-weight: 500;
+        @media (any-hover:hover) {
+            &:hover {
+                transition: all 0.5s ease 0s;
+                background-color: #3dbac6;
+            }
+        }
+    }
+}
+
+
+.join {
+    background-color: #393a39;
+    border-bottom: 7px solid #bb4465;
+    padding: 17px 0 20px 0;
+    &__body {
+    }
+
+    &__title {
+        text-align: center;
+        font-family: 'segoe-wp-light';
+        font-size: 27px;
+        line-height: 27px;
+        font-weight: 300;
+        text-transform: uppercase;
+        color: #ffffff;
+        margin: 0 0 14px 0;
+    }
+
+    &__text {
+        padding: 0 0 0 30px;
+        font-size: 16px;
+        line-height: 20px;
+        font-weight: 300;
+        color: #ffffff;
+        margin: 0 0 15px 0;
+        @media (max-width:$md2+px) {
+            text-align: center;
+        }
+    }
+
+    &__form {
+        padding: 0 30px 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__input {
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: 300;
+        color: #787878;
+        width: 100%;
+        height: 26px;
+        max-width: 500px;
+        align-self: center;
+        padding: 0 5px;
+        &:not(:last-child) {
+            margin: 0 0 12px 0;
+        }
+    }
+
+    &__button {
+        display: inline-block;
+        font-size: 20.2px;
+        line-height: 24px;
+        font-weight: 500;
+        color: #ffffff;
+        background-color: #bb4465;
+        width: 179px;
+        align-self: center;
+        padding: 5px 0;
+        border-radius: 5px;
+        @media (any-hover:hover) {
+            &:hover {
+                transition: all 0.5s ease 0s;
+                background-color: #b6365a;
+            }
+        }
+    }
+}
+//</Side>========================================================================================
+
+//<Articles>========================================================================================
+.articles {
+
+    &__body {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    &__item {
+        flex: 0 1 33.333%;
+        margin: 0 0 50px 0;
+        @media (max-width:750px) {
+            flex: 0 1 50%;
+            padding: 0 5px;
+        }
+        @media (max-width:$md4+px) {
+            flex: 0 1 100%;
+            margin: 0 0 30px 0;
+        }
+    }
+
+    &__title {
+        font-size: 26px;
+        line-height: 28px;
+        font-weight: 300;
+        color: #696161;
+        margin: 0 0 10px 0;
+    }
+
+    &__date {
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: 300;
+        color: #848484;
+        margin: 0 0 10px  0;
+    }
+
+    &__text {
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: 300;
+        color: #848484;
+    }
+}
+//</Articles>========================================================================================
