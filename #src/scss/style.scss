@@ -278,7 +278,7 @@ $md4:479.98;
 
 //<Side>========================================================================================
 .side {
-
+    padding: 0 0 0 5px; 
     &__column {
     }
 
@@ -457,9 +457,11 @@ $md4:479.98;
         max-width: 500px;
         align-self: center;
         padding: 0 5px;
+        position: relative;
         &:not(:last-child) {
             margin: 0 0 12px 0;
         }
+        
     }
 
     &__button {
@@ -494,6 +496,7 @@ $md4:479.98;
     &__item {
         flex: 0 1 33.333%;
         margin: 0 0 50px 0;
+        padding: 0 5px 0 0;
         @media (max-width:750px) {
             flex: 0 1 50%;
             padding: 0 5px;

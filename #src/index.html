@@ -190,10 +190,15 @@
                                     <div class="join__text">Lorem Ipsum is simply dummy text of the printing and
                                         typesetting industry. Lorem Ipsum</div>
                                     <form data-message="subscribe" data-test action="#" class="join__form">
-                                        <input autocomplete="off" type="text" name="form[]" data-error="Ошибка"
-                                            data-value="Name" class="join__input _req">
-                                        <input autocomplete="off" type="text" name="form[]" data-error="Ошибка"
-                                            data-value="email adress" class="join__input _req _email">
+                                        <input autocomplete="off" type="text" name="form[]"
+                                            data-error="Поле должно быть заполнено" data-value="Name"
+                                            class="join__input _req">
+                                        <input autocomplete="off" type="text" name="form[]"
+                                            data-error="Неверно введен email" data-value="email adress"
+                                            class="join__input _req _email">
+                                        <input autocomplete="off" type="tel" name="form[]"
+                                            data-error="Поле должно быть заполнено" data-value="phone number"
+                                            class="join__input _req _phone">
                                         <button type="submit" class="join__button _icon-send">SIGN ME UP!</button>
                                     </form>
                                 </div>

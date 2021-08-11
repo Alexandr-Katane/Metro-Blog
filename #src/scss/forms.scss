@@ -1,4 +1,8 @@
-.form{}
+.form{
+    &._error{
+        border: 1px solid red;
+    }
+}
 
 button{
     background-color:inherit;
@@ -82,6 +86,10 @@ button{
         width: 100%;
         //background-color: transparent;
         height: 100%;
+        & + .form__error {
+            opacity: 0;
+            visibility: hidden;
+        }
     }
 
     &__options{
@@ -149,7 +157,6 @@ textarea{
     height: 30px;
     display: block;
     padding: 0px 100px;
-    &._focus{}
     &._error{
         border: 1px solid red;
     }
@@ -159,7 +166,29 @@ textarea.input{
     padding: 0px 0px;
 }
 
+input {
+    //position: relative;
+    &:focus {
+        border: 1px solid green;
+    }
+    &._error{
+        border: 1px solid red;
+    }
+}
 
+.form__error {
+    //margin: 0 auto;
+    align-self: center;
+    width: 100%;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    max-width: 500px;
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.877);
+    color: red;
+    text-align: center;
+
+}
 
 ///checkbox
 

@@ -2,15 +2,20 @@ let forms = document.querySelectorAll('form');
 if (forms.length > 0) {
     for (let index = 0; index < forms.length; index++) {
         const el = forms[index];
-        el.addEventListener('submit', form_submit); 
+        el.addEventListener('submit', form_submit);
     }
 }
 
 function form_submit(e) {
-    let btn = event.target; 
-    let form = btn.closest('form'); 
+    let btn = event.target;
+    let form = btn.closest('form');
     let message = form.getAttribute('data-message');
+    let er = form.querySelectorAll('.form__error');
+    for (let i = 0; i < er.length; i++) {
+        form.removeChild(er[i]);
+    }
     let error = form_validate(form);
+
     if (error == 0) {
         //SendForm
         form_clean(form);
@@ -53,7 +58,7 @@ function form_validate_input(input) {
             let em = input.value.replace(" ", "");
             input.value = em;
         }
-        if (email_test(input) || input.value == input_g_value) {
+        if (!email_test(input.value) || input.value == input_g_value) {
             form_add_error(input);
             error++;
         } else {
@@ -78,31 +83,37 @@ function email_test(email) {
     return re.test(String(email).toLowerCase());
 }
 
+
 function form_add_error(input) {
     input.classList.add('_error');
+    //console.log(input);
     input.parentElement.classList.add('_error');
 
     let input_error = input.parentElement.querySelector('.form__error');
     if (input_error) {
-        input.parentElement.removeChild(input_error);
+        //input.parentElement.removeChild(input_error);
     }
     let input_error_text = input.getAttribute('data-error');
+    /*if (input.value == " ") {
+        input.insertAdjacentHTML('afterend', '<div class="form__error">' + "поле обязательно для заполнения" + '</div>');
+    }*/
     if (input_error_text && input_error_text != '') {
-        input.parentElement.insertAdjacentHTML('beforeend', '<div class="form__error">' + input_error_text + '</div>');
+        input.insertAdjacentHTML('afterend', '<div class="form__error">' + input_error_text + '</div>');
+        //input.value = input_error_text;
     }
+
 }
 
 function form_remove_error(input) {
     input.classList.remove('_error');
     input.parentElement.classList.remove('_error');
     let input_error = input.parentElement.querySelector('.form__error');
-    if (input_error) {
-        input.parentElement.removeChild(input_error);
+    if (input.nextElementSibling == input_error) {
+        input.nextElementSibling.remove(input_error);
     }
 }
 
 function form_clean(form) {
-    let inputs = form.querySelectorAll('input,textarea');
     for (let index = 0; index < inputs.length; index++) {
         const el = inputs[index];
         el.parentElement.classList.remove('_focus');
@@ -300,7 +311,6 @@ function select_search(e) {
 
 function selects_update_all() {
     let selects = document.querySelectorAll('select');
-    console.log(selects);
     if (selects) {
         for (let index = 0; index < selects.length; index++) {
             const select = selects[index];
@@ -309,8 +319,7 @@ function selects_update_all() {
     }
 }
 
-//Place....
-
+//===========================================================
 let inputs = document.querySelectorAll('input[data-value],textarea[data-value]');
 inputs_init(inputs);
 
@@ -344,7 +353,7 @@ function inputs_init(inputs) {
                 }
                 if (input.classList.contains('_phone')) {
                     input.classList.add('_mask');
-                    Inputmask("+375 (99) 9999999", {
+                    Inputmask("+380 (99) 9999999", {
                         //"placeholder": '',
                         clearIncomplete: true,
                         clearMaskOnLostFocus: true,
@@ -418,6 +427,8 @@ function input_clear_mask(input, input_g_value) {
     input_focus_remove(input);
 }
 
+///==========================================================
+
 ///quantity
 let quantityButtons = document.querySelectorAll('.quantity__button');
 if (quantityButtons.length > 0) {
@@ -425,7 +436,6 @@ if (quantityButtons.length > 0) {
         const quantityButton = quantityButtons[index];
         quantityButton.addEventListener("click", function (e) {
             let value = parseInt(quantityButton.closest('.quantity').querySelector('input').value);
-            console.log(value);
             if (quantityButton.classList.contains('quantity__button_plus')) {
                 value++;
             } else {
