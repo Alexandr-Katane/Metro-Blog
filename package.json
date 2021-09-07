@@ -4,7 +4,7 @@
   "description": "Сборка gulp",
   "main": "index.html",
   "scripts": {
-    "deploy": "gh-pages -d Metro Blog"
+    "deploy": "gh-pages -d Metro-Blog"
   },
   "author": "Alexandr",
   "license": "ISC",
