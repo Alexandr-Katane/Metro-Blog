@@ -1,13 +1,10 @@
 .header {
     position: fixed;
-    height: 120px;
     width: 100%;
     border-bottom: 1px solid #e6e6e6;
     z-index: 50;
     background-color: #fff;
-    @media (max-width:$maxWidthContainer+px) { 
-        height: calc(60px + (120 - 60) * ((100vw - 320px) / (1270 - 320)));
-    }
+    @include responsive-size(height,120,60,$maxWidthContainer);
     &__content {
         
     }
@@ -16,12 +13,9 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 40px 0px 29px 9px;
-        @media (max-width:$maxWidthContainer+px) {
-            padding-top: calc(10px + (40 - 10) * ((100vw - 320px) / (1270 - 320)));
-            padding-bottom: calc(10px + (40 - 10) * ((100vw - 320px) / (1270 - 320)));
-            padding-left: calc(0px + (9 - 0) * ((100vw - 320px) / (1270 - 320)));
-        }
+        @include responsive-size(padding-top,40,10,$maxWidthContainer);
+        @include responsive-size(padding-bottom,29,10,$maxWidthContainer);
+        @include responsive-size(padding-left,9,0,$maxWidthContainer);
     }
 
     &__logo {

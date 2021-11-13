@@ -11,6 +11,13 @@
     }
 }
 
+@mixin responsive-size ($property, $maxSize, $minSize,$widthContainer) {
+    #{$property}: $maxSize+px;
+    @media (max-width:$widthContainer+px) {
+        #{$property}: calc(#{$minSize+px} + (#{$maxSize} - #{$minSize}) * ((100vw - 320px) / (#{$widthContainer} - 320)));
+    }
+}
+
 //<Подключение шрифтов через Google fonts>===============================================================
 
 @import "fonts";
@@ -63,19 +70,14 @@ $md4:479.98;
 @import "footer";
 
 .main {
-    padding-top: 120px;
-    @media (max-width:$maxWidthContainer+px) {
-        padding-top: calc(60px + (120 - 60) * ((100vw - 320px) / (1270 - 320)));
-    }
+    @include responsive-size(padding-top, 120, 40, $maxWidthContainer);
 }
 
 //<Reviews>========================================================================================
 .reviews { 
-    padding: 116px 0 180px 0;
-    @media (max-width:$maxWidthContainer+px) {
-        padding-top: calc(0px + (116 - 0) * ((100vw - 320px) / (1270 - 320)));
-        padding-bottom: calc(10px + (39 - 10) * ((100vw - 320px) / (1270 - 320)));
-    }
+    @include responsive-size(padding-top, 116, 40, $maxWidthContainer);
+    @include responsive-size(padding-bottom, 180, 10, $maxWidthContainer);
+
 	&__content {
         
         @media (min-width:$md2+px) {
@@ -109,10 +111,8 @@ $md4:479.98;
 }
 
 .info-reviews {
-    padding: 63px 0 0 15px ;
-    @media (max-width:$maxWidthContainer+px) {
-        padding-bottom: calc(30px + (60 - 30) * ((100vw - 320px) / (1270 - 320)));
-    }
+    padding-left: 15px;
+    @include responsive-size(padding-bottom, 63, 30, $maxWidthContainer);
 	&__title {
         font-size: 61.2px;
         line-height: 58px;
